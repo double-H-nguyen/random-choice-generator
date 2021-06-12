@@ -8,9 +8,9 @@ def main():
 
     layout = [
         [sg.Text('Add choices with a comma between each choice')],
-        [sg.Input(key='-INPUT-', size=(100, 1), tooltip='Option 1, Option 2, Option 3, etc.')],
-        [sg.Text(key='-OUTPUT-', visible=False, size=(50, 1), font=('Microsoft JhengHei',20))],
-        [sg.Button('Choose For Me'), sg.Exit()]
+        [sg.Input(key='-INPUT-', size=(100, 1), tooltip='Option 1, Option 2, Option 3, etc.', enable_events=True)],
+        [sg.Text(key='-OUTPUT-', visible=False, size=(50, 1), font=('Microsoft JhengHei', 20))],
+        [sg.Button('Choose For Me', bind_return_key=True), sg.Exit()],
     ]
 
     window = sg.Window('Random Choice Generator', layout)
