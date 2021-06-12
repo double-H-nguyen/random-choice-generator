@@ -1,11 +1,12 @@
 import PySimpleGUI as sg
 import main_window
+import sys
 
 
 def main():
     starter_event, starter_values = main_window.main()
     if (starter_event == sg.WIN_CLOSED):
-        exit(0)
+        sys.exit()
 
 
 if __name__ == '__main__':
