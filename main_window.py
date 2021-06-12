@@ -6,8 +6,8 @@ import PySimpleGUI as sg
 def main():
     layout = [
         [sg.Text('Add choices with a comma between each choice')],
-        [sg.Input(key='-INPUT-', size=(100,1), tooltip='Option 1, Option 2, Option 3, etc.')],
-        [sg.Text(key='-OUTPUT-', size=(20,1), visible=False)],
+        [sg.Input(key='-INPUT-', size=(100, 1), tooltip='Option 1, Option 2, Option 3, etc.')],
+        [sg.Text(key='-OUTPUT-', size=(20, 1), visible=False)],
         [sg.Button('Choose For Me'), sg.Exit()]
     ]
 
@@ -15,14 +15,20 @@ def main():
 
     while True:
         event, values = window.Read()
-        print(event, values)  # debugging
-        if event == sg.WIN_CLOSED or event == 'Exit':  # if user closes window or clicks cancel
+        if event == sg.WIN_CLOSED or event == 'Exit':
             break
 
         if event == 'Choose For Me':
-            print(values['-INPUT-'])
-            # return random choice
-            window['-OUTPUT-'].update('selected_choice', visible=True)
+            selected_choice = select_rand_choice(values['-INPUT-'])
+            window['-OUTPUT-'].update(selected_choice, visible=True)
 
     window.close()
     return event, values
+
+
+def select_rand_choice(str):
+    if not str:  # checks if string is empty
+        return 'No choices to choose from'
+
+    choices = str.split(',')
+    return random.choice(choices).strip()  # strip() trims any white spaces
